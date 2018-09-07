@@ -1,13 +1,19 @@
 package com.example.pocQuerydsl.BestPractices;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.StringPath;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
-import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface BestPracticesRepository
-        extends CrudRepository<BestPracticesDocument, String>, QuerydslPredicateExecutor<BestPracticesDocument>, QuerydslBinderCustomizer<com.example.pocQuerydsl.BestPractices.QBestPracticesDocument> {
+        extends MongoRepository<BestPracticesDocument, String>, QuerydslPredicateExecutor<BestPracticesDocument>, QuerydslBinderCustomizer<com.example.pocQuerydsl.BestPractices.QBestPracticesDocument> {
+
+
+    List<BestPracticesDocument> findBestPracticesDocumentByCategoriesContaining(String category);
 
     /*
      * (non-Javadoc)

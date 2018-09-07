@@ -1,6 +1,7 @@
-This is a Spring Boot + MongoDB + Querydsl proof of concept to demonstrate a way of getting "dynamic" REST API:
+This is a Spring Boot + MongoDB comparison between Querydsl and MongoTemplate:
 
 * [Querydsl](http://www.querydsl.com/)
+* [MongoTemplate](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mongo-template)
 
 
 Prerequisites
@@ -25,7 +26,7 @@ To compile and start the app (Uses port 8090 and try to connect to MongoDB on th
 API
 ---------
 
-Once started you can try the api using curl or Postman as following:
+Once started you can try the api using curl or Postman as following (Querydsl):
 
     localhost:8090/api/v1/bestpractices/documents/?description=bp
 
@@ -34,9 +35,15 @@ Once started you can try the api using curl or Postman as following:
     localhost:8090/api/v1/bestpractices/documents/?description=bp&phase=bp&size=3&page=2
 
 
+Or that version with (MongoTemplate):
+
+    localhost:8090/api/v1/bestpractices/documents/search?description=bp
+    localhost:8090/api/v1/bestpractices/documents/search?description=bp&phase=6
+    localhost:8090/api/v1/bestpractices/documents/search?description=bp&phase=bp&size=3&page=2
+    localhost:8090/api/v1/bestpractices/documents/search?categories=cat0
 
 
-Implementation Details
+Implementation Details (Querydsl)
 -----------------------------
 The following maven plugin is generating Query type objects from the @Document entity:
 ```<plugin>
